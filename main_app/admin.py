@@ -5,4 +5,6 @@ from .models import Bird, Feeding
 from .models import Bird
 
 admin.site.register(Bird)
+admin.site.register(Feeding)
+
 

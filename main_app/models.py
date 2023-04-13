@@ -1,6 +1,8 @@
 from django.db import models
 from django.urls import reverse
 
+
+
 # Create your models here.
 class Bird(models.Model):
 	name = models.CharField(max_length=100)
@@ -13,14 +15,21 @@ class Bird(models.Model):
 MEALS = (
     ('B', 'Breakfast'),
     ('L', 'Lunch'),
-    ('D', 'Dinner')
+    ('D', 'Dinner'),
 )
 	
 class Feeding(models.Model):
-  date = models.DateField()
-  meal = models.CharField(max_length=1, choices=MEALS,
-  default=MEALS[0][0])
+  date = models.DateField('feeding date')
+  meal = models.CharField(
+    max_length=1,
+	 choices=MEALS,
+	 default=MEALS[0][0]
+  )
+  
+  class Meta:
+    ordering = ['-date']
+
   bird = models.ForeignKey(Bird, on_delete=models.CASCADE)
 
   def __str__(self):
-	  return f'{self.get_meal_display()} on {self.date}'
+    return f"{self.get_meal_display()} on {self.date}"
