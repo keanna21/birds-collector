@@ -1,10 +1,17 @@
 from django.shortcuts import render
+from django.views.generic.edit import CreateView
+from .models import Bird
 
 # Create your views here.
 from django.http import HttpResponse
 
-from .models import Bird
 
+
+class BirdCreate(CreateView):
+  model = Bird
+  fields = '__all__'
+  
+  
 
 def home(request):
     return HttpResponse('<h1>Hello World!</h1>')
